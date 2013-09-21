@@ -1,0 +1,10 @@
+/framework/
+/images/
+/assets/
+/protected/commands/
+/protected/data/
+/protected/messages/
+/protected/migrations/
+/protected/tests/
+/protected/vendor/
+/requirements/
