@@ -39,6 +39,7 @@
 			'items'=>array(
 				array('label'=>'Отправка письма', 'url'=>array('/site/index')),
 				array('label'=>'О скрипте', 'url'=>array('/site/page', 'view'=>'about')),
+                                array('label'=>'Развёртывание', 'url'=>array('/site/page', 'view'=>'deployment')),
                 array('label'=>'Демонстрация', 'url'=>array('/site/message')),
 			),
 		)); ?>
@@ -53,9 +54,9 @@
     
 	<?php echo $content; ?>
 
-	<div class="clear"></div>
+	<div class='clear'></div>
 
-	<div id="footer">
+	<div id='footer'>
 		Copyright &copy; <?php echo date('Y'); ?> by FusionFire.<br/>
 		All Rights Reserved.<br/>
 	</div><!-- footer -->
