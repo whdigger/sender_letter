@@ -39,8 +39,9 @@
 			'items'=>array(
 				array('label'=>'Отправка письма', 'url'=>array('/site/index')),
 				array('label'=>'О скрипте', 'url'=>array('/site/page', 'view'=>'about')),
+                                array('label'=>'Демонстрация', 'url'=>array('/site/message')),
                                 array('label'=>'Развёртывание', 'url'=>array('/site/page', 'view'=>'deployment')),
-                array('label'=>'Демонстрация', 'url'=>array('/site/message')),
+                                array('label'=>'Возможности', 'url'=>array('/site/page', 'view'=>'capability')),
 			),
 		)); ?>
 	</div><!-- mainmenu -->

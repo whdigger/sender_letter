@@ -21,7 +21,6 @@ $this->breadcrumbs = array(
     </tr>
 </table>
 
-
-<div id="apartments-list"></div> 
-
-<?php //echo CHtml::link('Link Text',array('controller/action','param1'=>'value1'), array('target'=>'_blank')); ?>
+<?php
+        echo CHtml::textArea('apartments-list','',array('rows'=>20, 'cols'=>120,'id'=>'apartments-list','style' => 'resize:none;'));
+?>

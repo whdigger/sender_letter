@@ -6,21 +6,22 @@ $this->breadcrumbs = array(
     'Развёртывание',
 );
 ?>
-
-<p> Для работы фреймворка Yii требуется минимум PHP 5.1. </p>
-<u>Установка</u>
+<h1>Установка скрипта</h1>
+<p> Для работы фреймворка Yii требуется минимум PHP 5.1.</p>
+<u>Установка</u></br> 
 1. 
 <?php
-        echo CHtml::link('Скачать Yii','',array('target='=>'_blank')); 
+        echo CHtml::link('Скачать Yii','https://github.com/yiisoft/yii/releases/download/1.1.14/yii-1.1.14.f0fee9.tar.gz',array('target='=>'_blank')); 
 ?>
  и распаковать в папку на вебсервер.</br> 
 2. 
 <?php
-        echo CHtml::link('Cкачать исходные коды', '',array('target='=>'_blank'));
+        echo CHtml::link('Cкачать исходные коды', 'https://github.com/whdigger/sender_letter/archive/master.zip',array('target='=>'_blank'));
  ?>
   программы и поместить их рядом с распакованным фреймворком.</br>
 
-3. Создать новую таблицу в БД под названием sender со следующим содержанием:</br>
+<p>3. Использовать скрипт для создание таблицы в БД:</p>
+<p>
 <?php
         echo CHtml::textArea('sqldump',"
 -- Дамп структуры базы данных sender
@@ -52,10 +53,10 @@ CREATE TABLE IF NOT EXISTS `process` (
   `sectoken` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
-",array('rows'=>15, 'cols'=>75));
+",array('rows'=>15, 'cols'=>120,'style' => 'resize:none;'));
 ?>
-
-4. Отредактировать файл конфигурации скрипта расположенный в protected/config/main.php указав host,dbname,username,password данные:</br>
+</p>
+4. Отредактировать файл конфигурации скрипта расположенный в protected/config/main.php указав host,dbname,username,password данные:</br></br>
 <?php
         echo CHtml::textArea('sqldump',"
 'db'=>array(
@@ -64,11 +65,10 @@ CREATE TABLE IF NOT EXISTS `process` (
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
-),
-",array('rows'=>15, 'cols'=>75));
+),",array('rows'=>6, 'cols'=>70,'style' => 'resize:none;'));
 ?>
-    
-
+</br> 
+</br>
 <h1>Настройка ngnix, php-fpm</h1>
 
 <ol type="1">
@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS `process` (
     <li>Настройка php</li>
 </ol>
 
-    <p> Создать файл в директории sites-available со следующим содержанием:</p>
-
+<p>Создать виртуальный хост в директории sites-available со следующим содержанием:</p>
+<p>
 <?php
         echo CHtml::textArea('nginxconf','
 server {
@@ -148,11 +148,40 @@ server {
 		log_not_found off;
 	}
 }
-        ',array('rows'=>15, 'cols'=>75));
+        ',array('rows'=>15, 'cols'=>120,'style' => 'resize:none;'));
 ?>
-<p>Создать символическую ссылку на файл sites-available</p>
-<p> Проверить конфигурацию php.ini (/etc/php5/fpm/php.ini) на наличие строки: default_charset = "utf-8" </p>
+</p>
+<p>Создать символическую ссылку на виртуальный хост ln -s <параметры> </br>
+Создать файл fastcgi_params со следующим содержанием и поместить его в папку с конфигурацией nginx</p>
+<p>
+<?php
+        echo CHtml::textArea('fastcgiconf','
+fastcgi_param	QUERY_STRING		$query_string;
+fastcgi_param	REQUEST_METHOD		$request_method;
+fastcgi_param	CONTENT_TYPE		$content_type;
+fastcgi_param	CONTENT_LENGTH		$content_length;
+
+fastcgi_param	SCRIPT_NAME		$fastcgi_script_name;
+fastcgi_param	REQUEST_URI		$request_uri;
+fastcgi_param	DOCUMENT_URI		$document_uri;
+fastcgi_param	DOCUMENT_ROOT		$document_root;
+fastcgi_param	SERVER_PROTOCOL		$server_protocol;
+
+fastcgi_param	GATEWAY_INTERFACE	CGI/1.1;
+fastcgi_param	SERVER_SOFTWARE		nginx;
+
+fastcgi_param	REMOTE_ADDR		$remote_addr;
+fastcgi_param	REMOTE_PORT		$remote_port;
+fastcgi_param	SERVER_ADDR		$server_addr;
+fastcgi_param	SERVER_PORT		$server_port;
+fastcgi_param	SERVER_NAME		$server_name;
+
+# PHP only, required if PHP was built with --enable-force-cgi-redirect
+fastcgi_param	REDIRECT_STATUS		200;
+',array('rows'=>15, 'cols'=>120,'style' => 'resize:none;'));
+?>
+</p>
+<p>Проверить конфигурацию php.ini (/etc/php5/fpm/php.ini) на наличие строки: default_charset = "utf-8"</p>
 
 <h1>Настройка Apach</h1>
-<p> Yii готов к работе с настроенным по умолчанию Apache.</p>
-?>
+Yii готов к работе с настроенным по умолчанию Apache.

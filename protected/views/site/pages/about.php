@@ -54,10 +54,17 @@ $this->breadcrumbs = array(
 </ol>
 
 
-<u>Демонстрация:</u>
+<?php
+    echo CHtml::link('Демонстрация:',array('/site/message')); 
+?>
+
 <ol type="1">
     <li>Либо выложить в интернет и дать ссылку на просмотр.</li>
-    <li>Прислать код и инструкцию по развертыванию.</li>
+    <li>Прислать код и 
+    <?php
+        echo CHtml::link('инструкцию по развертыванию.',array('/site/page', 'view'=>'deployment')); 
+    ?>
+    </li>
     <li>Прислать один eml-файл.</li>
 </ol>
 

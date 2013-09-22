@@ -9,8 +9,11 @@ if ($fp === false) {
     $item = basename($item);
     echo "Не возможно открыть файл $item";
 } else {
-    $line = fread($fp, $linesz);
-    echo nl2br($line);
+    echo fread($fp, $linesz);
+    /*
+     *  $line = fread($fp, $linesz);
+     *  echo nl2br($line);
+    */
 }
 
 fclose($fp);
