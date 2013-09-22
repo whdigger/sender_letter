@@ -26,17 +26,19 @@ class SiteController extends Controller {
     private $items = array('attach.eml', 'inline.eml', 'html.eml');
 
     public function actionMessage() {
-        $id = $_GET['id'];
-        if ($id >= 0 && $id < 3)
-            $item = $_SERVER['DOCUMENT_ROOT'] . '/message/' . $this->items[$id];
-        else
-            $item = '';
+        $id = isset($_GET['id']) ? $_GET['id'] : '';
+        if ($id !== '') {
+            if ($id >= 0 && $id < 3)
+                $item = $_SERVER['DOCUMENT_ROOT'] . '/message/' . $this->items[$id];
+            else
+                $item = '';
 
-        if (Yii::app()->request->isAjaxRequest) {
-            $this->renderPartial('_message', array(
-                'item' => $item,
-            ));
-            Yii::app()->end();
+            if (Yii::app()->request->isAjaxRequest) {
+                $this->renderPartial('_message', array(
+                    'item' => $item,
+                ));
+                Yii::app()->end();
+            }
         }
         $this->render('message');
     }
